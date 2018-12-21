@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Deep Diving into Simple RL Concepts
+title: Deep Diving into Basic RL Concepts
 categories: reinforcement_learning
 author: "Felix Su"
 ---
