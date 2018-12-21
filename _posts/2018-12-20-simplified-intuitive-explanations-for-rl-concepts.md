@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Simplified Intuitive Explanations for RL Concepts
+title: Stupidly Simple (yet in depth) Explanations for RL Concepts
 categories: reinforcement_learning
 author: "Felix Su"
 ---
