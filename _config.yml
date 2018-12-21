@@ -1,25 +1,17 @@
 title: I'm Just As Confused As You
-author: Felix Su
+author: Felix Su's Blog
 email: felixs8696 AT gmail.com
 description: > # this means to ignore newlines until "twitter_username:"
-  Hey, I'm Felix. I'm a Robotics AI software engineer at Amazon and a recent graduate of UC Berkeley
-  with a degree in Computer Science. Even after starting a machine learning club in college
-  and working on incredible things at work, I still struggle daily to understand things people much
-  smarter than me seem to pick up instantly. So, from one sturggling student to another, I hope to
-  help people in my own shoes.
-
-  My hope is that, by letting me struggle to untangle the complicated parts of machine learning,
-  you might not lose so much hair working through these things on your own.
-  Happy reading :)
+  Wroking backwards on AI and machine learning topics
 
 # social links
 # twitter_username: felixs8696
 github_username:  felixs8696
 rss: rss
 # dribbble_username: jekyll
-facebook_username: felixs8696
+# facebook_username: felixs8696
 # flickr_username: jekyll
-instagram_username: felixs8696
+# instagram_username: felixs8696
 linkedin_username: felixs8696
 # pinterest_username: jekyll
 # youtube_username: jekyll
