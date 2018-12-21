@@ -1,9 +1,14 @@
 ---
 layout: post
-title: Stupidly Simple (yet in depth) Explanations for RL Concepts
+title: Deep Diving into Simple RL Concepts
 categories: reinforcement_learning
 author: "Felix Su"
 ---
+
+## Table of Contents
+{:.no_toc}
+* TOC
+{:toc}
 
 ### On Policy vs. Off Policy
 
@@ -45,20 +50,28 @@ For off-policy Q-Learning, we have an additional **update policy** (update the c
 
 Therefore, if this update policy **is different** than our action policy, then we are **not following the action policy** for our updates, giving us an "off-policy" method. If our action policy and update policies are one and the same, then we have an "on-policy method."
 
-### Visual Example (say you don't know Q-Learning or SARSA)
+#### Visual Example
 
-Imagine you have a robot trying to find a safe path
+Sutton and Barto have a good example of how these two methods differ in their book "Reinforcement Learning: An Introduction" Book (Search: Example 6.6: Cliff Walking). Imagine you have a robot trying to find a safe path from state S to goal G in a simple grid world. However, the shortest path between the two is blocked by a cliff with a large negative penalty (-100). All other spaces have a small negative reward (-1) to incentivize moving to the goal as quickly as possible as moving around aimlessly would also incur more and more penalty.
+
+Using one of our active policies from the list above (i.e. epsilon greedy), notice that there is an optimal path (the edge of the cliff) and a safe path (the far side away from the cliff). Both accomplish the task, but because there is a small chance that we will randomly sample an action, moving along the edge of the cliff is risky, as we may fall into the cliff by choosing a random action. 
+
+Because on-policy SARSA uses the non-deterministic action policy in its updates, its learning accounts for this randomness, encouraging the safe path to the goal. Meanwhile, off-poilcy Q-Learning optimizes using the optimal update policy, so it learns the risky optimal path. We can see from the graph that the off-policy method's average online performance is worse than that of SARSA, however if $$\epsilon$$ were gradually reduced, then both methods
+would asymptotically converge to the optimal policy, so epislon greedy action policies usually reduce $$\epsilon$$ over time.
 
 <div style="text-align:center">
-	<img src="/assets/img/on-vs-off-policy.png" width="75%" alt="On vs Off Policy Exploration">
+	<!-- <img src="/assets/img/on-vs-off-policy.png" width="75%" alt="On vs Off Policy Exploration"> -->
+	<img src="/assets/img/cliff-example.png" width="60%" alt="Cliff Example">
 </div>
 <br>
 
-Because off-policy algorithms such as Q-Learning have some non-deterministic exploration path (i.e. - [$$\epsilon$$-greedy, $$\epsilon$$-soft, softmax](https://www.cse.unsw.edu.au/~cs9417ml/RL1/tdlearning.html#aselection){:target="_blank"})
+Because off-policy algorithms such as Q-Learning have some non-deterministic exploration path (i.e. [$$\epsilon$$-greedy, $$\epsilon$$-soft, softmax](https://www.cse.unsw.edu.au/~cs9417ml/RL1/tdlearning.html#aselection){:target="_blank"})
 
-## So which is better?
+#### So which is better?
 
-This answer, like with most RL techniques, is that it depends. The trade off can be abstracted to optimality (off-policy) vs. safety (on-policy). If taking the optimal path is extremely important and entering risky states is not too damaging (i.e. trying to get the high score in an Atari game), off-policy methods should have a higher best case performance. However, if those risky states are of high penalty (i.e. self driving vehicle crashes), on-policy methods will optimize towards the safer path.
+This answer, like with most RL techniques, is that it depends. Given sufficient training under any $$\epsilon$$-soft policy (policy that has a non-zero chance of randomly exploring), both algorithms will converge to a close approximation of the optimal action-value function for an arbitrary target policy. However, there are different benefits to each method.
+
+The trade off can be abstracted to optimality (off-policy) vs. safety (on-policy). If taking the optimal path is extremely important and entering risky states is not too damaging (i.e. trying to get the high score in an Atari game), off-policy methods should have a higher best case online performance. However, if those risky states are of high penalty (i.e. self driving vehicle crashes), on-policy methods will optimize towards the safer path during online training.
 
 **Relevant Topics**
 - Experience Replay
@@ -73,7 +86,7 @@ This answer, like with most RL techniques, is that it depends. The trade off can
 	- [https://www.cse.unsw.edu.au/~cs9417ml/RL1/tdlearning.html#aselection](https://www.cse.unsw.edu.au/~cs9417ml/RL1/tdlearning.html#aselection){:target="_blank"}
 - Q-Learning and SARSA Algorithm pseudo code:
 	- [https://towardsdatascience.com/introduction-to-various-reinforcement-learning-algorithms-i-q-learning-sarsa-dqn-ddpg-72a5e0cb6287](https://towardsdatascience.com/introduction-to-various-reinforcement-learning-algorithms-i-q-learning-sarsa-dqn-ddpg-72a5e0cb6287){:target="_blank"}
-- Sutton and Barto's "Reinforcement Learning: An Introduction" Book
+- Sutton and Barto's "Reinforcement Learning: An Introduction" Book (Search: Example 6.6: Cliff Walking)
 	- [http://incompleteideas.net/book/bookdraft2017nov5.pdf](http://incompleteideas.net/book/bookdraft2017nov5.pdf){:target="_blank"}
 
 ### Model-based vs Model-free
