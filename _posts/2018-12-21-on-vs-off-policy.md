@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Deep Diving into Basic RL Concepts
-categories: reinforcement_learning
+title: On Policy vs. Off Policy
+categories: deep_diving_into_basic_rl_concepts
 author: "Felix Su"
 ---
 
@@ -73,11 +73,11 @@ This answer, like with most RL techniques, is that it depends. Given sufficient 
 
 The trade off can be abstracted to optimality (off-policy) vs. safety (on-policy). If taking the optimal path is extremely important and entering risky states is not too damaging (i.e. trying to get the high score in an Atari game), off-policy methods should have a higher best case online performance. However, if those risky states are of high penalty (i.e. self driving vehicle crashes), on-policy methods will optimize towards the safer path during online training.
 
-**Relevant Topics**
+#### Relevant Topics
 - Experience Replay
 - (A3C) Asynchronous Methods for Seep Reinforcement Learning
 
-**Sources**
+#### Sources
 - Stack Overflow explanation of On vs Off Policy
 	- [https://stats.stackexchange.com/a/184794](https://stats.stackexchange.com/a/184794){:target="_blank"}
 - Simple Explanation of On-Policy Q-Learning and Off-Policy SARSA
@@ -88,9 +88,3 @@ The trade off can be abstracted to optimality (off-policy) vs. safety (on-policy
 	- [https://towardsdatascience.com/introduction-to-various-reinforcement-learning-algorithms-i-q-learning-sarsa-dqn-ddpg-72a5e0cb6287](https://towardsdatascience.com/introduction-to-various-reinforcement-learning-algorithms-i-q-learning-sarsa-dqn-ddpg-72a5e0cb6287){:target="_blank"}
 - Sutton and Barto's "Reinforcement Learning: An Introduction" Book (Search: Example 6.6: Cliff Walking)
 	- [http://incompleteideas.net/book/bookdraft2017nov5.pdf](http://incompleteideas.net/book/bookdraft2017nov5.pdf){:target="_blank"}
-
-### Model-based vs Model-free
-
-| Model Based | Model Free |
-| --- | --- |
-| Policy is learned given *knowledge of the state* and actions | Policy is optimized via rewards from trial and error given *no visibility into the environment (black box)*|
