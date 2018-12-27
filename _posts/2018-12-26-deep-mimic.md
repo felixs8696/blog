@@ -213,7 +213,7 @@ $$p^i(s) = \frac{\exp[V^i(s)/\mathcal{T}]}{\sum_{j=1}^{k}\exp[V^i(s)/\mathcal{T}
 
 Variable and Operation definitions:
 
-|$\pi^i(a|s)$|Policy representing a likelihood of choosing some action $a$ given some state $s$|
+|$\pi^i(a \mid s)$|Policy representing a likelihood of choosing some action $a$ given some state $s$|
 |$p^i(s)$|Probability of selecting policy $i$ given some state $s$|
 |$V^i(s)$|The result of the value function given some state $s$ to determine how good being in state $s$ is|
 
