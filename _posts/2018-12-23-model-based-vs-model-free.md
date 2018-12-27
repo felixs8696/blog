@@ -11,20 +11,20 @@ published: false
 * TOC
 {:toc}
 
-### Model-based vs Model-free
+## Model-based vs Model-free
 
 | Model Based | Model Free |
 | --- | --- |
 | Policy is learned given *knowledge of the state* and actions | Policy is optimized via rewards from trial and error given *no visibility into the environment (black box)*|
 
-#### Breaking it Down
+### Breaking it Down
 
-#### Visual Example
+### Visual Example
 
-#### So which is better?
+### So which is better?
 
-#### Relevant Topics
+### Relevant Topics
 - 
 
-#### Sources
+### Sources
 - 

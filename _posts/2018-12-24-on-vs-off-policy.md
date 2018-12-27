@@ -10,19 +10,19 @@ author: "Felix Su"
 * TOC
 {:toc}
 
-### On Policy vs. Off Policy
+## On Policy vs. Off Policy
 
 | | On Policy | Off Policy |
 | --- | --- | --- |
 | Definition | Policy being used to explore the environment is the same as the policy being optimized | Policy being used to explore the environment is independent of the policy being optimized |
 | Examples | SARSA<br>N-Step<br>Actor-Critic | Q-Learning<br>Evolution Strategies |
 
-#### Basic Prerequisite Knowledge
+### Basic Prerequisite Knowledge
 
 - **Q-value ($$Q(s, a)$$)**: a.k.a. an "action value". This is a value represents "how good" an action is from a given state.
 - **Q-learning and SARSA**: No need to understand the details of these. Q-learning is an off-policy method to update a system's Q-values and SARSA is an on-policy method to do the same. After optimization, the Q-values should converge to stationary values that allow for an agents to optimally traverse an environment to accomplish the RL agent's goal.
 
-#### Breaking it Down
+### Breaking it Down
 
 The key here is the difference between what I call an RL agent's "action policy" and an "update policy" . The **action policy** the method that our agent uses to choose its actions and explore. This is also termed the "target policy ($$\pi(s)$$)" because our objective is to improve this policy and eventually use it for evaluation. The **update policy** (exemplified by the $$\max_{a'} Q(s',a')$$ in the Q-Learning update) is the method by which we choose the state action pairs we use to update and optimize our action policy.
 
@@ -57,7 +57,7 @@ For off-policy Q-Learning, we have an additional **update policy** (Q-learning u
 
 Therefore, if this update policy **is different** than our action policy, then we are **not following the action policy** for our updates, giving us an "off-policy" method. If our action policy and update policies are one and the same, then we have an "on-policy method."
 
-#### Visual Example
+### Visual Example
 
 Sutton and Barto have a good example of how these two methods differ in their book ["Reinforcement Learning: An Introduction" Book (Search: Example 6.6: Cliff Walking)](http://incompleteideas.net/book/bookdraft2017nov5.pdf){:target="_blank"}. Imagine you have a robot trying to find a safe path from state S to goal G in a simple grid world. However, the shortest path between the two is blocked by a cliff with a large negative penalty (-100). All other spaces have a small negative reward (-1) to incentivize moving to the goal as quickly as possible as moving around aimlessly would also incur more and more penalty.
 
@@ -74,17 +74,17 @@ would asymptotically converge to the optimal policy, so epislon greedy action po
 
 Because off-policy algorithms such as Q-Learning have some non-deterministic exploration path (i.e. [$$\epsilon$$-greedy, $$\epsilon$$-soft, softmax](https://www.cse.unsw.edu.au/~cs9417ml/RL1/tdlearning.html#aselection){:target="_blank"})
 
-#### So which is better?
+### So which is better?
 
 This answer, like with most RL techniques, is that it depends. Given sufficient training under any $$\epsilon$$-soft policy (policy that has a non-zero chance of randomly exploring), both algorithms will converge to a close approximation of the optimal action-value function for an arbitrary target policy. However, there are different benefits to each method.
 
 The trade off can be abstracted to optimality (off-policy) vs. safety (on-policy). If taking the optimal path is extremely important and entering risky states is not too damaging (i.e. trying to get the high score in an Atari game), off-policy methods should have a higher best case online performance. However, if those risky states are of high penalty (i.e. self driving vehicle crashes), on-policy methods will optimize towards the safer path during online training.
 
-#### Relevant Topics
+### Relevant Topics
 - Experience Replay
 - (A3C) Asynchronous Methods for Seep Reinforcement Learning
 
-#### Sources
+### Sources
 - Stack Overflow explanation of On vs Off Policy
 	- [https://stats.stackexchange.com/a/184794](https://stats.stackexchange.com/a/184794){:target="_blank"}
 - Simple Explanation of On-Policy Q-Learning and Off-Policy SARSA
