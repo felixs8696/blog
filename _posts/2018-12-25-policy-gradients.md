@@ -130,6 +130,8 @@ As noted above, a recurring issue with reinforcement learning, particularly for 
 ## Sources
 - (DDPG) Continuous Control with Deep Reinforcement Learning
 	- [https://arxiv.org/abs/1509.02971](https://arxiv.org/abs/1509.02971){:target="_blank"}
+- Stack Exchange: When can we interchange integration and differentiation?
+	- [https://math.stackexchange.com/questions/2530213/when-can-we-interchange-integration-and-differentiation](https://math.stackexchange.com/questions/2530213/when-can-we-interchange-integration-and-differentiation){:target="_blank"}
 - Daniel Takeshi: Going Deeper Into Reinforcement Learning: Fundamentals of Policy Gradients
 	- [https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/](https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/){:target="_blank"}
 - Sutton and Barto's "Reinforcement Learning: An Introduction" Book (Chapter 13: Policy Gradient Methods)

@@ -14,6 +14,73 @@ author: "Felix Su"
 
 The goal of this paper is to use well-known RL methods to **train a simulated figure to copy a motion clip while also accomplishing the task shown by the clip** (e.g. perform a back flip, throw a ball, etc.). The authors combine a motion-imitation objective, such as "copy the joint rotations of the human" with a task objective "throw the ball into a target" and train an RL agent to accomplish these objectives in simulation. They also explore methods to **integrate multiple clips into the learning process and develop multi-skilled agents that can perform diverse skills in a logical sequence** (e.g. roll when you need to recover from falling). They demonstrated these result with using various characters (human, Atlas robot, bipedal dinosaur, dragon) and a large variety of skills, including locomotion, acrobatics, and martial arts and **achieved extremely realistic performance by the simulated RL agent**.
 
+## Major Problems (and Their Solutions) During Training
+
+### Problem #1: Fixed Initial State in Sequential Learning
+
+The authors discovered that **if they always started the agent from the same state (position and orientation) for each simulation, learning took much longer and even converged to suboptimal situations** where high-value states weren't even visited (e.g. the top part of a back flip). This issue was the result of two difficult roadblocks in RL techniques.
+
+1. Progress cannot be made on later actions before mastering earlier ones
+2. Until a high reward state is visited, the policy will never know about it.
+
+This means that, when attempting a flip, we have a **chicken and egg problem**.
+
+**Chicken**: For an agent to discover that a full mid-air rotation is highly rewarded, it must first perform a viable jumping motion
+
+**Egg**: For an agent to be motivated to do such a jump, it needs to know that the full mid-air rotation is a high-reward state
+
+### Solution: Reference State Initialization
+
+To solve the chicken and egg issue, we simply initialize each episode with a randomly sampled state from the reference motion. If we do this, **our agent can learn from high reward states before even learning how to reach them**.
+
+Note: This works because the agent will learn to converge to the initially sampled reference state. This is important because if we don't converge to the initially sampled state, then learning from that state could be much less useful.
+
+### Problem #2: Fixed Period Termination for Cyclic Tasks
+
+By **fixing the number of timesteps that a simulation takes before it automatically terminates and by having no failure condition that zeros out the reward for the remainder of a training cycle**, the resulting data will be **dominated by agents attempting to recover from failures instead of focusing on globally optimizing the task**. This is the case because failures happen more often than successes and are hard to recover from.
+
+Here is an example where an agent falls on the floor and continuous attempting a flip in that state instead of accomplishing the flip.
+
+### Solution: Early Termination
+
+To solve this, we must simply stop any training episode that reaches some termination criteria (i.e. the torso hits the ground). After this time, the agent is left with zero reward for the remainder of the episode (eliminating the effect of any data from further actions).
+
+This simple solution biases the data distribution in favor of samples that are actually relevant to the global task.
+
+<mark>As we see here, the combination of these two solutions removes limiters that would prevent our agents from succeeding.</mark>
+
+## Neural Network Architectures
+
+### Policy Network
+
+The authors used a neural network to map state $s$ and goal $g$ to a Gaussian action distribution, represented by a layer of linear units (one for each action dimension (joint)). They would use the resulting Gaussian means $\mu(s)$ and a fixed diagonal covariance matrix (hyperparameter) to sample actions for their training.
+
+*Note: This network is augmented with a height map for vision-based tasks.*
+
+$$\pi(a \mid s) = \mathcal{N}(\mu(s), \Sigma)$$
+
+### Value Network
+
+Another neural network was used to map state $s$ and goal $g$ to a single estimated value $V(s)$, which would represent how "good" that given state was. This network is designed almost identically to the policy network, but output layer consists of a single linear unit.
+
+## Algorithm
+
+### (PPO) Proximal Policy Optimization
+
+The authors used PPO because it does well to mitigate high variance issues with policy gradients and avoids the difficulties of enforcing hard KL divergence constraints as in TRPO.
+
+### Temporal Difference (TD) Target Value Estimator
+
+TBD
+
+### Generalize Advantage Estimate (GAE)
+
+TBD
+
+### Surrogate Clip Loss
+
+TBD
+
 ## Two Term Reward
 
 The **combined imitation objective and task objective** used for training is defined as such:
@@ -29,6 +96,8 @@ $$r_t = \omega^I r_t^I + \omega^G r_t^G$$
 The imitation reward is further broken down into 4 components:
 
 $$r_t^I = =\omega^p r_t^p + \omega^v r_t^v + \omega^e r_t^e + \omega^c r_t^c$$
+
+$$\omega^p = 0.65, \omega^v = 0.1, \omega^e = 0.15, \omega^c = 0.1$$
 
 Where the following definitions and objectives are given:
 
@@ -113,41 +182,6 @@ Variable and Operation definitions:
 |$p_t^{tar}$|3D world location of target|
 |$p_t^e$|3D world location of link or projectile used to hit target|
 
-## Major Problems (and Their Solutions) During Training
-
-### Problem #1: Fixed Initial State in Sequential Learning
-
-The authors discovered that **if they always started the agent from the same state (position and orientation) for each simulation, learning took much longer and even converged to suboptimal situations** where high-value states weren't even visited (e.g. the top part of a back flip). This issue was the result of two difficult roadblocks in RL techniques.
-
-1. Progress cannot be made on later actions before mastering earlier ones
-2. Until a high reward state is visited, the policy will never know about it.
-
-This means that, when attempting a flip, we have a **chicken and egg problem**.
-
-**Chicken**: For an agent to discover that a full mid-air rotation is highly rewarded, it must first perform a viable jumping motion
-
-**Egg**: For an agent to be motivated to do such a jump, it needs to know that the full mid-air rotation is a high-reward state
-
-### Solution: Reference State Initialization
-
-To solve the chicken and egg issue, we simply initialize each episode with a randomly sampled state from the reference motion. If we do this, **our agent can learn from high reward states before even learning how to reach them**.
-
-Note: This works because the agent will learn to converge to the initially sampled reference state. This is important because if we don't converge to the initially sampled state, then learning from that state could be much less useful.
-
-### Problem #2: Fixed Period Termination for Cyclic Tasks
-
-By **fixing the number of timesteps that a simulation takes before it automatically terminates and by having no failure condition that zeros out the reward for the remainder of a training cycle**, the resulting data will be **dominated by agents attempting to recover from failures instead of focusing on globally optimizing the task**. This is the case because failures happen more often than successes and are hard to recover from.
-
-Here is an example where an agent falls on the floor and continuous attempting a flip in that state instead of accomplishing the flip.
-
-### Solution: Early Termination
-
-To solve this, we must simply stop any training episode that reaches some termination criteria (i.e. the torso hits the ground). After this time, the agent is left with zero reward for the remainder of the episode (eliminating the effect of any data from further actions).
-
-This simple solution biases the data distribution in favor of samples that are actually relevant to the global task.
-
-<mark>As we see here, the combination of these two solutions removes limiters that would prevent our agents from succeeding.</mark>
-
 ## Enabling A Multi-Skilled Agent
 
 ### Multi-Clip Reward
@@ -185,37 +219,6 @@ Variable and Operation definitions:
 
 Note: The ratio seen above is also termed a [Boltzmann distribution](http://www.thermopedia.com/content/593/){:target="_blank"}, which has roots in thermodynamics. Here, it is applied as a sort of boosting term (see: Section 7.3 of [http://snasiriany.me/files/ml-book.pdf](http://snasiriany.me/files/ml-book.pdf){:target="_blank"} to cause policies that will perform better in the given state to have higher probabilities of being chosen.
 
-## Neural Network Architectures
-
-### Policy Network
-
-The authors used neural network to maps state $s$ and goal $g$ to a Gaussian action distribution, represented by a layer of linear units (one for each action dimension (joint)). They would use the resulting Gaussian means $\mu(s)$ and a fixed diagonal covariance matrix (hyperparameter) to sample actions for their training.
-
-*Note: This network is augmented with a height map for vision-based tasks.*
-
-$$\pi(a \mid s) = \mathcal{N}(\mu(s), \Sigma)$$
-
-### Value Network
-
-Another neural network was used to map state $s$ and goal $g$ to a single estimated value $V(s)$, which would represent how "good" that given state was. This network is designed almost identically to the policy network, but output layer consists of a single linear unit.
-
-## Algorithm
-
-### (PPO) Proximal Policy Optimization
-
-The authors used PPO because it does well to mitigate high variance issues with policy gradients and avoids the difficulties of enforcing hard KL divergence constraints as in TRPO.
-
-### Temporal Difference (TD) Target Value Estimator
-
-TBD
-
-### Generalize Advantage Estimate (GAE)
-
-TBD
-
-### Surrogate Clip Loss
-
-TBD
 
 ## Relevant Topics
 - (PPO) Proximal Policy Optimization
