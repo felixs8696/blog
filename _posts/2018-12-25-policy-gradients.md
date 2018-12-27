@@ -10,12 +10,10 @@ author: "Felix Su"
 * TOC
 {:toc}
 
-### Prerequisite Knowledge
+### Basic Prerequisite Knowledge
 
-**Policy**
-: The thing our RL agent uses to choose what actions to take
-**Q-Learning**
-: A method that approximates the value of each action. The policy for this would just be to move according to which of these values is better once the algorithm converges. Unfortunately, this often means the action and observations have to be discrete (finite) otherwise you have to estimate the values for an infinite amount of action, which is infeasible.
+- **Policy**: The thing our RL agent uses to choose what actions to take
+- **Q-Learning**: A method that approximates the value of each action. The policy for this would just be to move according to which of these values is better once the algorithm converges. Unfortunately, this often means the action and observations have to be discrete (finite) otherwise you have to estimate the values for an infinite amount of action, which is infeasible.
 
 ### Motivation for Policy Gradients
 
