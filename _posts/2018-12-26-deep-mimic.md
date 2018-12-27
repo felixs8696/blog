@@ -205,8 +205,21 @@ Another neural network was used to map state $s$ and goal $g$ to a single estima
 
 The authors used PPO because it does well to mitigate high variance issues with policy gradients and avoids the difficulties of enforcing hard KL divergence constraints as in TRPO.
 
+### Temporal Difference (TD) Target Value Estimator
+
+TBD
+
+### Generalize Advantage Estimate (GAE)
+
+TBD
+
+### Surrogate Clip Loss
+
+TBD
+
 ## Relevant Topics
 - (PPO) Proximal Policy Optimization
+- Reducing Variance
 
 ## Sources
 - [Paper] DeepMimic: Example-Guided Deep Reinforcement Learning of Physics-Based Character Skills
