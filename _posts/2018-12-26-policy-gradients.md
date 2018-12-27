@@ -18,7 +18,7 @@ Policy gradients perform direct gradient updates on the policy which allows for 
 
 Since we are exploring some environment during which we take a series of steps, we define our agent's **trajectory** using state, action, reward tuples:
 
-> $$\tau = ((s_0, a_0, r_0), (s_1, a_1, r_1), ..., (s_{T-1}, a_{T-1}, r_{T-1}))$$
+$$\tau = ((s_0, a_0, r_0), (s_1, a_1, r_1), ..., (s_{T-1}, a_{T-1}, r_{T-1}))$$
 
 For a policy gradient system, an agent executes a trajectory by choosing actions via a policy $$\pi_\theta$$ and arriving in new states by performing that action under the conditions of the environment dynamics model $$P$$. In math language this means, $$a_i \sim \pi_\theta(a_i \mid s_i)$$ and $$s_{i+1} \sim P(s_{i+1} \mid s_i, a_i)$$. *State decisions are modeled by distribution $$P$$ because taking action $$a_i$$ in the environment may not deterministically result in the expected state $$s_{i+1}$$ due to noise and other environmental factors.*
 
@@ -28,17 +28,17 @@ For a policy gradient system, an agent executes a trajectory by choosing actions
 
 The whole point of this reinforcement learning method (and all RL methods for that matter) is to optimize some objective function. In our case that means simply maximizing our expected reward $R$ by optimizing our policy $\theta$.
 
-> $$\text{maximize}_\theta \mathbb{E}_{\pi_\theta} [R]$$
+$$\text{maximize}_\theta \mathbb{E}_{\pi_\theta} [R]$$
 
 There are many types of reward functions, for example a Monte Carlo reward function would look like:
 
-> $$R = \sum_{t=0}^{T-1} \gamma^t r_t$$
+$$R = \sum_{t=0}^{T-1} \gamma^t r_t$$
 
 *Note: The discount factor $$\gamma$$ simply uses the geometric series convergence rule to enforce the reward to be finite under as $$T \rightarrow \infty$$.*
 
 However, we will use a generic reward function for our policy gradient derivation to keep it simple and universally applicable.
 
-> $$R = R(\tau)$$
+$$R = R(\tau)$$
 
 As with all gradient based learning methods, in order to maximize our objective function, we need to find its gradient. Once we find the gradient, we can perform gradient ascent (if you want to maximize a reward function) or gradient descent (if you want to minimize a loss function) to achieve our goal. In our case we want to perform gradient ascent on our reward function and to remind you, our objective function is: $$\text{maximize}_\theta \mathbb{E}_{\pi_\theta} [R(\tau)]$$
 
@@ -67,10 +67,12 @@ $$^{**}$$ $\frac{\nabla_\theta p_\theta(\tau)}{p_\theta(\tau)} = \nabla_\theta \
 <mark>Up to this point, this is what we have:</mark>
 
 **Objective Function**
-> $$\text{maximize}_\theta \mathbb{E}_{\pi_\theta} [R(\tau)]$$
+
+$$\text{maximize}_\theta \mathbb{E}_{\pi_\theta} [R(\tau)]$$
 
 **Policy Gradient (unfinished)**
-> $$\nabla_\theta\mathbb{E}[R(\tau)] = \mathbb{E}[R(\tau) \nabla_\theta \log p_\theta(\tau)]$$
+
+$$\nabla_\theta\mathbb{E}[R(\tau)] = \mathbb{E}[R(\tau) \nabla_\theta \log p_\theta(\tau)]$$
 
 #### Deriving Log Probability of a Trajectory
 
@@ -95,10 +97,12 @@ $$
 <mark>Combining all of our information together, we finally have our policy gradient defined as **the gradient of our policy over the expectation of the reward over a trajectory**</mark>
 
 **Objective Function**
-> $$\text{maximize}_\theta \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$$
+
+$$\text{maximize}_\theta \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$$
 
 **Final Policy Gradient**
-> $$\nabla_\theta \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta} \bigg[R(\tau) \cdot \nabla_\theta \bigg(\sum_{t=0}^{T-1} \log \pi_\theta(a_t \mid s_t)\bigg)\bigg]$$
+
+$$\nabla_\theta \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta} \bigg[R(\tau) \cdot \nabla_\theta \bigg(\sum_{t=0}^{T-1} \log \pi_\theta(a_t \mid s_t)\bigg)\bigg]$$
 
 
 ### So which is better, Q-Learning or Policy Gradients?
