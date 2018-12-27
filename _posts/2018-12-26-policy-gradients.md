@@ -10,9 +10,9 @@ author: "Felix Su"
 * TOC
 {:toc}
 
-### Description
+### Motivation for Policy Gradients
 
-Policy gradients perform direct gradient updates on the policy while Q-learning methods such as DQN attempt to find an approximation of the optimal policy using Q-values to represent how good each state action pair is.
+Policy gradients perform direct gradient updates on the policy which allows for continuous or high dimensional state and action spaces. Other methods such as Q-learning methods like DQN attempt to find an approximation of the optimal policy using Q-values to represent how good each state action pair is. This means they can only handle discrete and low-dimensional action spaces. Thus policy gradient have value in end to end control tasks such as robotics.
 
 ### Outlining the Policy Gradient Exploration Environment
 
@@ -114,3 +114,13 @@ Conveniently for me, this was explained very well by blogger Felix Yu in his own
 As noted above, a recurring issue with reinforcement learning, particularly for policy gradients, is variance in our estimations of the gradient of $$E[R(\tau)]$$. Agents have difficulty exploring and learning in a smooth, well-defined manner without inducing a biased exploration path. To prevent this post from getting too long, I have moved variance reduction methods to different blog posts. Click below to move through them.
 
 - [Reducing Variance Using Baseline Functions]({% post_url 2018-12-26-reducing-variance-using-baseline-functions %})
+
+#### Relevant Topics
+- (DDPG) Deep Deterministic Policy Gradients
+
+#### Sources
+- (DDPG) Continuous Control with Deep Reinforcement Learning
+	- [https://arxiv.org/abs/1509.02971](https://arxiv.org/abs/1509.02971){:target="_blank"}
+- 
+- Sutton and Barto's "Reinforcement Learning: An Introduction" Book (Chapter 13: Policy Gradient Methods)
+	- [http://incompleteideas.net/book/bookdraft2017nov5.pdf](http://incompleteideas.net/book/bookdraft2017nov5.pdf){:target="_blank"}
