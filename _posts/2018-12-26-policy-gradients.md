@@ -115,12 +115,13 @@ As noted above, a recurring issue with reinforcement learning, particularly for 
 
 - [Reducing Variance Using Baseline Functions]({% post_url 2018-12-26-reducing-variance-using-baseline-functions %})
 
-#### Relevant Topics
+### Relevant Topics
 - (DDPG) Deep Deterministic Policy Gradients
 
-#### Sources
+### Sources
 - (DDPG) Continuous Control with Deep Reinforcement Learning
 	- [https://arxiv.org/abs/1509.02971](https://arxiv.org/abs/1509.02971){:target="_blank"}
-- 
+- Daniel Takeshi: Going Deeper Into Reinforcement Learning: Fundamentals of Policy Gradients
+	- [https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/](https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/){:target="_blank"}
 - Sutton and Barto's "Reinforcement Learning: An Introduction" Book (Chapter 13: Policy Gradient Methods)
 	- [http://incompleteideas.net/book/bookdraft2017nov5.pdf](http://incompleteideas.net/book/bookdraft2017nov5.pdf){:target="_blank"}

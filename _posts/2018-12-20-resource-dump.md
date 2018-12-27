@@ -5,6 +5,15 @@ categories: reinforcement_learning
 ---
 
 ## All Resources
+
+### Policy Gradients
+
+- (DDPG) Continuous Control with Deep Reinforcement Learning
+	- [https://arxiv.org/abs/1509.02971](https://arxiv.org/abs/1509.02971){:target="_blank"}
+- Daniel Takeshi: Going Deeper Into Reinforcement Learning: Fundamentals of Policy Gradients
+	- [https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/](https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/){:target="_blank"}
+
+### On Policy vs. Off Policy
 - Stack Overflow explanation of On vs Off Policy
 	- [https://stats.stackexchange.com/a/184794](https://stats.stackexchange.com/a/184794){:target="_blank"}
 - Simple Explanation of On-Policy Q-Learning and Off-Policy SARSA
