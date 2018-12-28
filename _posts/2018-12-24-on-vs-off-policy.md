@@ -11,17 +11,18 @@ comments: true
 * TOC
 {:toc}
 
+### Basic Prerequisite Knowledge
+
+- **Policy**: The thing our RL agent uses to choose what actions to take
+- **Q-value ($$Q(s, a)$$)**: a.k.a. an "action value". This is a value represents "how good" an action is from a given state.
+- **Q-learning and SARSA**: No need to understand the details of these. Q-learning is an off-policy method to update a system's Q-values and SARSA is an on-policy method to do the same. After optimization, the Q-values should converge to stationary values that allow for an agents to optimally traverse an environment to accomplish the RL agent's goal.
+
 ## On Policy vs. Off Policy
 
 | | On Policy | Off Policy |
 | --- | --- | --- |
 | Definition | Policy being used to explore the environment is the same as the policy being optimized | Policy being used to explore the environment is independent of the policy being optimized |
 | Examples | SARSA<br>N-Step<br>Actor-Critic | Q-Learning<br>Evolution Strategies |
-
-### Basic Prerequisite Knowledge
-
-- **Q-value ($$Q(s, a)$$)**: a.k.a. an "action value". This is a value represents "how good" an action is from a given state.
-- **Q-learning and SARSA**: No need to understand the details of these. Q-learning is an off-policy method to update a system's Q-values and SARSA is an on-policy method to do the same. After optimization, the Q-values should converge to stationary values that allow for an agents to optimally traverse an environment to accomplish the RL agent's goal.
 
 ### Breaking it Down
 
