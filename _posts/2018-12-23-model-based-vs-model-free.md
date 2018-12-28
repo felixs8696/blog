@@ -3,7 +3,6 @@ layout: post
 title: Model Based vs. Model Free
 categories: deep_diving_into_basic_rl_concepts
 author: "Felix Su"
-published: false
 comments: true
 ---
 
@@ -20,12 +19,20 @@ comments: true
 
 ### Breaking it Down
 
+- TBA
+
 ### Visual Example
+
+- TBA
 
 ### So which is better?
 
+- TBA
+
 ### Relevant Topics
-- 
+
+- TBA
 
 ### Sources
-- 
+
+- TBA
