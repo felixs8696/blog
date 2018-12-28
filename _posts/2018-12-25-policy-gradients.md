@@ -13,6 +13,8 @@ comments: true
 
 ## Basic Prerequisite Knowledge
 
+- **States and Actions**: Signified by $$(s,a)$$. Imagine yourself trying to walk through a field to get somewhere. There are two things you need to do to avoid being a vegetable. One, have some knowledge of what's going on around you. That's your state. Two, you need to actually do stuff to get there. That's your action.
+- **Trajectory**: A trajectory is simply the path you take to try to get to your goal. I also call this a series of "state-action pairs", which simply means your trajectory develops as each time you decide you want to take an action, you evaluate your state and then take an action (See, it's so easy a caveman could do it. Rest in peace old GEICO commercials).
 - **Policy**: The thing our RL agent uses to choose what actions to take
 - **Q-Learning**: A method that approximates the value of each action. The policy for this would just be to move according to which of these values is better once the algorithm converges. Unfortunately, this often means the action and observations have to be discrete (finite) otherwise you have to estimate the values for an infinite amount of actions, which is infeasible.
 
