@@ -26,7 +26,7 @@ comments: true
 
 ### Breaking it Down
 
-The key here is the difference between what I call an RL agent's "action policy" and an "update policy" . The **action policy** the method that our agent uses to choose its actions and explore. This is also termed the "target policy ($$\pi(s)$$)" because our objective is to improve this policy and eventually use it for evaluation. The **update policy** (exemplified by the $$\max_{a'} Q(s',a')$$ in the Q-Learning update) is the method by which we choose the state action pairs we use to update and optimize our action policy.
+The key here is the difference between what I call an RL agent's "action policy" and an "update policy" . The **action policy** is the method that our agent uses to choose its actions and explore. This is also termed the "target policy ($$\pi(s)$$)" because our objective is to improve this policy and eventually use it for evaluation. The **update policy** (exemplified by the $$\max_{a'} Q(s',a')$$ in the Q-Learning update) is the method by which we choose the state action pairs we use to update and optimize our action policy.
 
 For on-policy methods, we use the action policy to **both** do updates **and** choose actions. For off-policy methods our action policy has to be **different** than the update policy. So, the way we **explore** is **independent** of the way we **optimize**.
 
