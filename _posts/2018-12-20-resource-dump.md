@@ -2,6 +2,7 @@
 layout: post
 title: Resource Dump
 categories: reinforcement_learning
+comments: true
 ---
 
 ## All Resources

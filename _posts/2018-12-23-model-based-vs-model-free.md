@@ -4,6 +4,7 @@ title: Model Based vs. Model Free
 categories: deep_diving_into_basic_rl_concepts
 author: "Felix Su"
 published: false
+comments: true
 ---
 
 ## Table of Contents

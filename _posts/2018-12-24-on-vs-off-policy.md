@@ -3,6 +3,7 @@ layout: post
 title: On Policy vs. Off Policy
 categories: deep_diving_into_basic_rl_concepts
 author: "Felix Su"
+comments: true
 ---
 
 ## Table of Contents

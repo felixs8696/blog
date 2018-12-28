@@ -4,6 +4,7 @@ title: Common Issues with Reinforcement Learning
 categories: reinforcement_learning
 author: "Felix Su"
 published: false
+comments: true
 ---
 
 ## Table of Contents

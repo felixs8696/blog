@@ -3,6 +3,7 @@ layout: post
 title: Policy Gradients
 categories: general_rl_algorithms
 author: "Felix Su"
+comments: true
 ---
 
 ## Table of Contents
