@@ -47,7 +47,7 @@ Let's see and **example of an update policy**
 Let's focus on the one difference between the update functions in both Q-Learning and SARSA: the max operator in front of the Q-value that estimates our expected future reward, in other words, the "update policy" for Q-Learning.
 
 <div style="text-align:center">
-	<img src="/assets/img/q-vs-sarsa.png" width="75%" alt="Q Learning vs SARSA">
+	<img src="/assets/img/on_vs_off_policy/q-vs-sarsa.png" width="75%" alt="Q Learning vs SARSA">
 </div>
 <br>
 
@@ -62,8 +62,8 @@ Therefore, if this update policy **is different** than our action policy, then w
 Sutton and Barto have a good example of how these two methods differ in their book ["Reinforcement Learning: An Introduction" Book (Search: Example 6.6: Cliff Walking)](http://incompleteideas.net/book/bookdraft2017nov5.pdf){:target="_blank"}. Imagine you have a robot trying to find a safe path from state S to goal G in a simple grid world. However, the shortest path between the two is blocked by a cliff with a large negative penalty (-100). All other spaces have a small negative reward (-1) to incentivize moving to the goal as quickly as possible as moving around aimlessly would also incur more and more penalty.
 
 <div style="text-align:center">
-	<!-- <img src="/assets/img/on-vs-off-policy.png" width="75%" alt="On vs Off Policy Exploration"> -->
-	<img src="/assets/img/cliff-example.png" width="60%" alt="Cliff Example">
+	<!-- <img src="/assets/img/on_vs_off_policy/on-vs-off-policy.png" width="75%" alt="On vs Off Policy Exploration"> -->
+	<img src="/assets/img/on_vs_off_policy/cliff-example.png" width="60%" alt="Cliff Example">
 </div>
 <br>
 

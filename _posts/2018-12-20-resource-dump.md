@@ -11,6 +11,12 @@ categories: reinforcement_learning
 	- [https://xbpeng.github.io/projects/DeepMimic/index.html](https://xbpeng.github.io/projects/DeepMimic/index.html){:target="_blank"}
 - Proximal Policy Optimization Algorithms
 	- [https://arxiv.org/abs/1707.06347](https://arxiv.org/abs/1707.06347){:target="_blank"} 
+- A Comprehensive Guide to Machine Learning
+    - [http://snasiriany.me/files/ml-book.pdf](http://snasiriany.me/files/ml-book.pdf){:target="_blank"} 
+- Xue Bin (Jason) Peng: Towards a Virtual Stuntman
+	- [https://bair.berkeley.edu/blog/2018/04/10/virtual-stuntman/](https://bair.berkeley.edu/blog/2018/04/10/virtual-stuntman/){:target="_blank"} 
+- SIGGRAPH 2018: DeepMimic paper (main video)
+	- [https://youtu.be/vppFvq2quQ0](https://youtu.be/vppFvq2quQ0){:target="_blank"} 
 
 ### Policy Gradients
 
