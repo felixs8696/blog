@@ -58,7 +58,7 @@ If we read this back in English, the left side is equivalent to **the maximum Q-
 
 So, **Double Q-Learning** tells us to decouple the parameters into two independent sets of parameters, $$\theta_i$$ and $$\theta_i^-$$ like so:
 
-$$Y^{\textrm{Double Q-Learning} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta'_i)$$
+$$Y^{\textrm{Double Q-Learning}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta'_i)$$
 
 Using this formulation, the action selection policy we use to predict future rewards is still parameterized using the weights $$\theta_i$$, so we are still estimating the value of the greedy policy using the online network weights. However, we use a second independent set of weights $$\theta'_i$$ to fairly evaluate the value of this policy without being tied to the action-selection policy.
 
