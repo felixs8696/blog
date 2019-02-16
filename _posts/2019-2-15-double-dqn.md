@@ -58,20 +58,20 @@ If we read this back in English, the left side is equivalent to **the maximum Q-
 
 So, **Double Q-Learning** tells us to decouple the parameters into two independent sets of parameters, $$\theta_i$$ and $$\theta_i^-$$ like so:
 
-$$Y^{Double Q-Learning} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta'_i)$$
+$$Y^{\textrm{Double Q-Learning} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta'_i)$$
 
 Using this formulation, the action selection policy we use to predict future rewards is still parameterized using the weights $$\theta_i$$, so we are still estimating the value of the greedy policy using the online network weights. However, we use a second independent set of weights $$\theta'_i$$ to fairly evaluate the value of this policy without being tied to the action-selection policy.
 
 For **Double Q-learning** $$\theta_i$$ and $$\theta'_i$$ are just two independent networks that are learned by assigning each experience randomly to update one of the two networks. For each update, one set of weights is used to determine the greedy policy and the other to determine its value. For **Double DQN**, it is easiest to just use $$\theta'_i = \theta_i^-$$ to transition standard DQN to Double DQN where $$\theta'_i$$ is updated in the same way that it is updated in the standard DQN algorithm (frozen and periodically copied from $$\theta_i$$).
 
-$$Y^{Double Q-Learning} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$
+$$Y^{\textrm{Double Q-Learning}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$
 
 ## TLDR
-In short, **standard DQN** uses a target-value network, $$\theta_i^-$$, that is different than the online action-value network, $$\theta_i$$, in that it is frozen for a set number of timesteps $$\tau$$ before it is copied from $$\theta_i$$, which is updated every timestep. This **decouples the action-value estimation from the target-value estimation**.
+In short, **standard DQN** uses a target-value network, $$\theta_i^-$$, that is different than the online action-value network, $$\theta_i$$, in that it is frozen for a set number of timesteps $$\tau$$ before it is copied from $$\theta_i$$, which is updated every timestep. This **decouples the action-value estimation, $$Q(s,a; \theta_i)$$, from the target-value estimation, $$r + \gamma \max_{a'} Q(s',a'; \theta_i^-)$$**.
 
 $$L_i(\theta_i) = \mathbb{E}_{(s, a, r, s') \sim \textrm{U(D)}} \bigg[\bigg(r + \gamma \max_{a'} Q(s',a'; \theta_i^-) - Q(s,a; \theta_i)\bigg)^2\bigg]$$
 
-However, **Double DQN** further iterates on this by **decoupling the action-sampling policy from the action-evaluation function** within the target-value equation. So, $$Y^{DQN} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$ and
+However, **Double DQN** further iterates on this by **decoupling the action-sampling policy from the action-evaluation function** within the target-value equation. So, $$Y^{\textrm{Double DQN}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$ and
 
 $$L_i(\theta_i) = \mathbb{E}_{(s, a, r, s') \sim \textrm{U(D)}} \bigg[\bigg(r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-) - Q(s,a; \theta_i)\bigg)^2\bigg]$$
 
