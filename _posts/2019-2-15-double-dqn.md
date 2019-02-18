@@ -62,7 +62,7 @@ $$Y^{\textrm{Double Q-Learning}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'
 
 Using this formulation, the action selection policy we use to predict future rewards is still parameterized using the weights $$\theta_i$$, so we are still estimating the value of the greedy policy using the online network weights. However, we use a second independent set of weights $$\theta'_i$$ to fairly evaluate the value of this policy without being tied to the action-selection policy.
 
-For **Double Q-learning** $$\theta_i$$ and $$\theta'_i$$ are just two independent networks that are learned by assigning each experience randomly to update one of the two networks. For each update, one set of weights is used to determine the greedy policy and the other to determine its value. For **Double DQN**, it is easiest to just use $$\theta'_i = \theta_i^-$$ to transition standard DQN to Double DQN where $$\theta'_i$$ is updated in the same way that it is updated in the standard DQN algorithm (frozen and periodically copied from $$\theta_i$$).
+For **Double Q-learning** $$\theta_i$$ and $$\theta'_i$$ are just two independent networks that are learned by assigning each experience randomly to update one of the two networks. For each update, one set of weights is used to determine the greedy policy and the other to determine its value. For **Double DQN**, it is easiest to just use $$\theta'_i = \theta_i^-$$ to transition standard DQN to Double DQN where $$\theta_i^-$$ is updated in the same way that it is updated in the standard DQN algorithm (frozen and periodically copied from $$\theta_i$$).
 
 $$Y^{\textrm{Double DQN}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$
 
