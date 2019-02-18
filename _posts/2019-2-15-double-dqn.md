@@ -64,7 +64,7 @@ Using this formulation, the action selection policy we use to predict future rew
 
 For **Double Q-learning** $$\theta_i$$ and $$\theta'_i$$ are just two independent networks that are learned by assigning each experience randomly to update one of the two networks. For each update, one set of weights is used to determine the greedy policy and the other to determine its value. For **Double DQN**, it is easiest to just use $$\theta'_i = \theta_i^-$$ to transition standard DQN to Double DQN where $$\theta'_i$$ is updated in the same way that it is updated in the standard DQN algorithm (frozen and periodically copied from $$\theta_i$$).
 
-$$Y^{\textrm{Double Q-Learning}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$
+$$Y^{\textrm{Double DQN}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$
 
 ## TLDR
 In short, **standard DQN** uses a target-value network, $$\theta_i^-$$, that is different than the online action-value network, $$\theta_i$$, in that it is frozen for a set number of timesteps $$\tau$$ before it is copied from $$\theta_i$$, which is updated every timestep. This **decouples the action-value estimation, $$Q(s,a; \theta_i)$$, from the target-value estimation, $$r + \gamma \max_{a'} Q(s',a'; \theta_i^-)$$**.
