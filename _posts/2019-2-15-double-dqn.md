@@ -71,7 +71,7 @@ In short, **standard DQN** uses a target-value network, $$\theta_i^-$$, that is 
 
 $$L_i(\theta_i) = \mathbb{E}_{(s, a, r, s') \sim \textrm{U(D)}} \bigg[\bigg(r + \gamma \max_{a'} Q(s',a'; \theta_i^-) - Q(s,a; \theta_i)\bigg)^2\bigg]$$
 
-However, **Double DQN** further iterates on this by decoupling the **action-sampling policy** from the **action-evaluation function** *within the target-value equation*. So, $$Y^{\textrm{Double DQN}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$ and
+However, **Double DQN** further iterates on this by decoupling the **action-sampling policy** (inner Q-function) from the **action-evaluation function** (outer Q-function) *within the target-value equation*. So, $$Y^{\textrm{Double DQN}} = r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-)$$ and
 
 $$L_i(\theta_i) = \mathbb{E}_{(s, a, r, s') \sim \textrm{U(D)}} \bigg[\bigg(r + \gamma Q(s', \textrm{argmax}_{a'} Q(s',a'; \theta_i); \theta_i^-) - Q(s,a; \theta_i)\bigg)^2\bigg]$$
 
